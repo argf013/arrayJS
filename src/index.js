@@ -6,7 +6,7 @@ let stock = 0;
 data.fruits.forEach((fruit) => {
   stock += fruit.stock;
 });
-
+//
 // count total typeImport
 const local_fruit = data.fruits.filter((fruit) => {
   return fruit.fruitType === "LOCAL" ? true : false;

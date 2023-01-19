@@ -42,4 +42,5 @@ const fruits = [
     stock: 150
   }
 ];
-export default fruits;
+
+console.log(fruits);

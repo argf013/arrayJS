@@ -1,13 +1,14 @@
 import data from "../src/DATA.json";
 const root = document.getElementById("app");
+// import fruits from "./Data";
 
-// count total stock
+// menghitung total stock
 let stock = 0;
 data.fruits.forEach((fruit) => {
   stock += fruit.stock;
 });
-//
-// count total typeImport
+
+// menghitung total typeImport
 const local_fruit = data.fruits.filter((fruit) => {
   return fruit.fruitType === "LOCAL" ? true : false;
 });
@@ -15,7 +16,7 @@ const local_fruit = data.fruits.filter((fruit) => {
 const import_fruit = data.fruits.filter((fruit) => {
   return fruit.fruitType === "IMPORT" ? true : false;
 });
-
+// console.log(import_fruit);
 // show local fruit
 const filterFruitLocal = data.fruits.filter((fruit) => {
   return fruit.fruitType === "LOCAL" ? true : false;
@@ -25,16 +26,17 @@ const filterFruitLocal = data.fruits.filter((fruit) => {
 const filterFruitImport = data.fruits.filter((fruit) => {
   return fruit.fruitType === "IMPORT" ? true : false;
 });
-let andi = "";
-for (let fruit of data.fruits) {
-  andi += `${fruit.fruitName}, `;
-}
-
+//membuat nama buah menjadi huruf kapital
+let anjay = "";
+data.fruits.map((fruit) => {
+  return (anjay += `-${fruit.fruitName.toUpperCase()}<br> `);
+});
+//menampilkan output kedalam html
 root.innerHTML = `
-  <p>Buah yang dimiliki andi: ${andi}</p>
+  <p>Buah yang dimiliki andi: ${anjay}</p>
   <p>Total Stock: ${stock}</p>
   <p>Total Tipe Buah Import: ${import_fruit.length} </p>
   <p>Total Tipe Buah Local: ${local_fruit.length} </p>
-  <p>Import: ${filterFruitImport} </p>
-  <p>Local: ${filterFruitLocal} </p>
+  <p>Import: ${filterFruitImport.map((e) => e.fruitName)} </p>
+  <p>Local: ${filterFruitLocal.map((e) => e.fruitName)} </p>
   `;

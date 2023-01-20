@@ -1,6 +1,13 @@
 import data from "../src/DATA.json";
 const root = document.getElementById("app");
 
+//menampilkan buah yang dimiliki andi
+let andi = data.fruits.filter((fruit) => {
+  return fruit.fruitName === "apel" || fruit.fruitName === "KURMA"
+    ? false
+    : true;
+});
+
 // menghitung total stock
 let stock = 0;
 data.fruits.forEach((fruit) => {
@@ -26,13 +33,6 @@ local_fruit.forEach((fruit) => {
 });
 // memfilter double string
 let filterImportTotal = import_fruit.filter((fruit) => {
-  return fruit.fruitName === "apel" || fruit.fruitName === "KURMA"
-    ? false
-    : true;
-});
-
-//menampilkan buah yang dimiliki andi
-let andi = data.fruits.filter((fruit) => {
   return fruit.fruitName === "apel" || fruit.fruitName === "KURMA"
     ? false
     : true;

@@ -1,4 +1,4 @@
-import data from "../src/DATA.json";
+import data from "../DATA.json";
 const root = document.getElementById("app");
 
 //menampilkan buah yang dimiliki andi

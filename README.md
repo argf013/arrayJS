@@ -1,4 +1,4 @@
-# trys
+# Soal
 Created with CodeSandbox
 1. Buah apa saja yang dimiliki Andi? (fruitName)
 2. Andi memisahkan buahnya menjadi beberapa wadah berdasarkan tipe buah

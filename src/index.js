@@ -1,42 +1,49 @@
 import data from "../src/DATA.json";
 const root = document.getElementById("app");
-// import fruits from "./Data";
 
 // menghitung total stock
 let stock = 0;
 data.fruits.forEach((fruit) => {
   stock += fruit.stock;
 });
-
-// menghitung total typeImport
-const local_fruit = data.fruits.filter((fruit) => {
+// memfilter local fruit
+let local_fruit = data.fruits.filter((fruit) => {
   return fruit.fruitType === "LOCAL" ? true : false;
 });
-
-const import_fruit = data.fruits.filter((fruit) => {
+// memfilter import fruit
+let import_fruit = data.fruits.filter((fruit) => {
   return fruit.fruitType === "IMPORT" ? true : false;
 });
-// console.log(import_fruit);
-// show local fruit
-const filterFruitLocal = data.fruits.filter((fruit) => {
-  return fruit.fruitType === "LOCAL" ? true : false;
+// menghitung jumlah import
+let totalImport = 0;
+import_fruit.forEach((fruit) => {
+  totalImport += fruit.stock;
+});
+// menghitung jumlah local
+let totalLocal = 0;
+local_fruit.forEach((fruit) => {
+  totalLocal += fruit.stock;
+});
+// memfilter double string
+let filterImportTotal = import_fruit.filter((fruit) => {
+  return fruit.fruitName === "apel" || fruit.fruitName === "KURMA"
+    ? false
+    : true;
 });
 
-// show import fruit
-const filterFruitImport = data.fruits.filter((fruit) => {
-  return fruit.fruitType === "IMPORT" ? true : false;
+//menampilkan buah yang dimiliki andi
+let andi = data.fruits.filter((fruit) => {
+  return fruit.fruitName === "apel" || fruit.fruitName === "KURMA"
+    ? false
+    : true;
 });
-//membuat nama buah menjadi huruf kapital
-let anjay = "";
-data.fruits.map((fruit) => {
-  return (anjay += `-${fruit.fruitName.toUpperCase()}<br> `);
-});
+
 //menampilkan output kedalam html
 root.innerHTML = `
-  <p>Buah yang dimiliki andi: ${anjay}</p>
+  <p>Buah yang dimiliki andi: ${andi.map((e) => e.fruitName)}</p>
   <p>Total Stock: ${stock}</p>
-  <p>Total Tipe Buah Import: ${import_fruit.length} </p>
-  <p>Total Tipe Buah Local: ${local_fruit.length} </p>
-  <p>Import: ${filterFruitImport.map((e) => e.fruitName)} </p>
-  <p>Local: ${filterFruitLocal.map((e) => e.fruitName)} </p>
+  <p>Buah Import: ${totalImport} </p>
+  <p>Buah Local: ${totalLocal} </p>
+  <p>Import: ${filterImportTotal.map((e) => e.fruitName)}</p>
+  <p>Local: ${local_fruit.map((e) => e.fruitName)} </p>
   `;

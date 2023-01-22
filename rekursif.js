@@ -1,6 +1,6 @@
 /*
 Buatlah fungsi untuk menghitung total komentar yang ada, termasuk semua balasan komentar. 
-Berdasarkan data di atas, total komentar adalah 7 komentar.
+Berdasarkan data, total komentar adalah 7 komentar.
 */
 const comments = [
     {

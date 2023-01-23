@@ -20,7 +20,7 @@ const checkAvailability = () => {
  
 const checkStock = () => {
     return new Promise((resolve, reject) => {
-        state.isCoffeeMachineBusy = true;
+        !state.isCoffeeMachineBusy;
         setTimeout(() => {
             if (state.stock.coffeeBeans >= 16 && state.stock.water >= 250) {
                 resolve("Stok cukup. Bisa membuat kopi.");

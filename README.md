@@ -1,2 +1,2 @@
 # JavaScript 
-Bermain dengan array dan object pada javascript
+Bermain Javascript basic

@@ -1,8 +1,8 @@
 # Rekursif
 Created with CodeSandbox
-- Buatlah fungsi untuk menghitung total komentar yang ada, termasuk semua
-balasan komentar. Berdasarkan data dari DATA.json di atas, total komentar adalah 7 komentar. (jawaban ada di folder src: index.js)
-- Pembahasan rekursif2.js: \
+- ## Buatlah fungsi untuk menghitung total komentar yang ada, termasuk semua balasan komentar. Berdasarkan data dari DATA.json di atas, total komentar adalah 7 komentar.  
+    jawaban ada di folder src: index.js
+- ## Pembahasan rekursif2.js: 
 \
 Mengapa nilai yang dihasilkan adalah 2? Berikut adalah alur programnya..
 

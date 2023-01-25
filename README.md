@@ -1,3 +1,2 @@
 # JavaScript 
 Bermain Javascript basic
-Wt5VbFdpVFn7BD1vBuPfaG4IagH19zjyuC4GZ4lFA773Ctw5TvqxP1ef9-Yw7GjdB9DG5JA7gexw1zEhkkS9ZA

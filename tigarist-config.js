@@ -15,3 +15,27 @@ const options1 = {
 	optimizeQuery: true
 };
 getLyrics(options1).then((lyrics) => console.log(lyrics));
+// React
+
+class Lyrics extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      lyrics: ""
+    };
+  }
+
+  componentDidMount() {
+    getLyrics(options).then((lyrics) => {
+      this.setState({ lyrics });
+    });
+  }
+
+  render() {
+    return (
+      <div>
+        <div id="lyrics" dangerouslySetInnerHTML={{ __html: this.state.lyrics }} />
+      </div>
+    );
+  }
+}

@@ -18,18 +18,33 @@
 
       let x = 0;
       let y = 0;
+      let direction = "right";
 
-      function updatePosition(direction) {
-        if (direction === "right") {
-          x += 10;
-        } else if (direction === "left") {
-          x -= 10;
+      document.addEventListener("keydown", event => {
+        switch (event.keyCode) {
+          case 37:
+            direction = "left";
+            break;
+          case 39:
+            direction = "right";
+            break;
+        }
+      });
+
+      function updatePosition() {
+        switch (direction) {
+          case "left":
+            x -= 10;
+            break;
+          case "right":
+            x += 10;
+            break;
         }
       }
 
       function gameLoop() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        updatePosition("right");
+        updatePosition();
         drawPixel(x, y);
         requestAnimationFrame(gameLoop);
       }

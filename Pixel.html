@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <style>
+      canvas {
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="game" width="400" height="400"></canvas>
+    <script>
+      const canvas = document.getElementById("game");
+      const ctx = canvas.getContext("2d");
+
+      function drawPixel(x, y) {
+        ctx.fillRect(x, y, 10, 10);
+      }
+
+      let x = 0;
+      let y = 0;
+
+      function updatePosition(direction) {
+        if (direction === "right") {
+          x += 10;
+        } else if (direction === "left") {
+          x -= 10;
+        }
+      }
+
+      function gameLoop() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        updatePosition("right");
+        drawPixel(x, y);
+        requestAnimationFrame(gameLoop);
+      }
+
+      gameLoop();
+    </script>
+  </body>
+</html>

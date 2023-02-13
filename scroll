@@ -1,0 +1,113 @@
+<div class="container text-center">
+  <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+    <div class="col">
+      <div class="p-3">Row column</div>
+    </div>
+    <div class="col">
+      <div class="p-3">Row column</div>
+    </div>
+    <div class="col">
+      <div class="p-3">Row column</div>
+    </div>
+    <div class="col">
+      <div class="p-3">Row column</div>
+    </div>
+    <div class="col">
+      <div class="p-3">Row column</div>
+    </div>
+    <div class="col">
+      <div class="p-3">Row column</div>
+    </div>
+    <div class="col">
+      <div class="p-3">Row column</div>
+    </div>
+    <div class="col">
+      <div class="p-3">Row column</div>
+    </div>
+    <div class="col">
+      <div class="p-3">Row column</div>
+    </div>
+    <div class="col">
+      <div class="p-3">Row column</div>
+    </div>
+  </div>
+</div>
+
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;700&display=swap');
+
+* {
+    font-family: Quicksand !important;
+    font-weight: 700 !important;
+    color: #314457;
+}
+
+.carousel-wrapper {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+}
+
+.button-wrapper {
+    position: absolute;
+    top: 150px;
+    left: 1000;
+    right: 0;
+    z-index: 1;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+    overflow-x: scroll;
+    max-width: 100empx;
+    max-height: 10000px;
+    border: 1px solid #ddd;
+    position: relative;
+}
+
+.wrapper::-webkit-scrollbar {
+    width: 0;
+}
+
+.item {
+    margin-top: 1em;
+    min-width: 18em;
+    width: 18em;
+    height: 18em;
+    line-height: 90px;
+    text-align: center;
+    background-color: #ddd;
+    margin-right: 0.5em;
+    margin-left: 1em;
+}
+
+
+@media only screen and (max-width: 415px) {}
+
+
+import './style.css'
+
+
+const wrapper = document.querySelector('.wrapper');
+const prevButton = document.querySelector('#prevButton');
+const nextButton = document.querySelector('#nextButton');
+
+let scrollAmount = 0;
+const itemWidth = document.querySelector('.item').offsetWidth;
+
+nextButton.addEventListener('click', function() {
+  scrollAmount += itemWidth;
+  wrapper.scrollTo({
+    left: scrollAmount,
+    behavior: 'smooth'
+  });
+});
+
+prevButton.addEventListener('click', function() {
+  scrollAmount -= itemWidth;
+  wrapper.scrollTo({
+    left: scrollAmount,
+    behavior: 'smooth'
+  });
+});
+

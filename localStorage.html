@@ -1,0 +1,82 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="myForm">
+        <label for="nama">Nama: </label>
+        <input placeholder="nama" id="nama"></input><br><br>
+        <label for="umur">Umur:</label>
+        <input type="number" placeholder="umur" id="umur"></input>
+        <button id="submit">Submit</button>
+        <button id="delete">Delete</button>
+    </form>
+<script>
+    const btn = document.getElementById('submit');
+const deleteBtn = document.getElementById('delete');
+
+let datas = [];
+let idCounter = 1;
+
+const getData = () => {
+    const dataJSON = localStorage.getItem('datas');
+    const idCounterJSON = localStorage.getItem('idCounter');
+    if (dataJSON !== null) {
+        datas = JSON.parse(dataJSON);
+        idCounter = JSON.parse(idCounterJSON);
+    }
+};
+
+const simpanData = () => {
+    localStorage.setItem("datas", JSON.stringify(datas));
+    localStorage.setItem("idCounter", JSON.stringify(idCounter));
+}
+
+const tambahData = () => {
+    const nama = document.getElementById('nama').value;
+    const umur = document.getElementById('umur').value;
+
+    const dataBaru = {
+        id: idCounter,
+        nama,
+        umur
+    };
+
+    datas.push(dataBaru);
+    idCounter++;
+    simpanData();
+    console.log(datas);
+
+    document.getElementById('nama').value = '';
+    document.getElementById('umur').value = '';
+}
+
+const hapusData = (index) => {
+    datas.splice(index, 1)
+    simpanData()
+    idCounter = 1;
+    datas.forEach((data) => {
+        data.id = idCounter;
+        idCounter++;
+    });
+    console.log(datas)
+}
+
+btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    tambahData();
+});
+
+deleteBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    hapusData();
+});
+
+getData();
+
+</script>
+</body>
+</html>

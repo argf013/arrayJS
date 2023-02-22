@@ -1,42 +1,72 @@
-const form = document.querySelector('form');
-const commentsList = document.getElementById('comments');
-let commentToEdit = null;
+<!DOCTYPE html>
+<html lang="en">
 
-form.addEventListener('submit', function (event) {
-  event.preventDefault(); // prevent page reload on form submission
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Add Comment</title>
+</head>
 
-  const commentText = document.getElementById('comment').value;
+<body>
+    <div>
+        <form>
+            <label for="comment">Add a comment:</label>
+            <br />
+            <textarea id="comment" name="comment"></textarea>
+            <br />
+            <button type="submit">Submit</button>
+        </form>
+        <ul id="comments">
+            <!-- existing comments go here -->
+        </ul>
+    </div>
 
-  if (commentToEdit) {
-    // if commentToEdit exists, update the comment
-    commentToEdit.querySelector('.comment-text').innerText = commentText;
-    commentToEdit = null; // reset the commentToEdit variable
-  } else {
-    // otherwise, create a new comment
-    const newComment = document.createElement('li');
-    newComment.innerHTML = `
+    <script>
+        const form = document.querySelector('form');
+        const commentsList = document.getElementById('comments');
+        let commentToEdit = null;
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault(); // prevent page reload on form submission
+
+            const commentText = document.getElementById('comment').value;
+
+            if (commentToEdit) {
+                // if commentToEdit exists, update the comment
+                commentToEdit.querySelector('.comment-text').innerText = commentText;
+                commentToEdit = null; // reset the commentToEdit variable
+            } else {
+                // otherwise, create a new comment
+                const newComment = document.createElement('li');
+                newComment.innerHTML = `
       <div class="comment-text">${commentText}</div>
       <div class="comment-actions">
         <button class="edit-comment">Edit</button>
         <button class="delete-comment">Delete</button>
       </div>
     `;
-    commentsList.appendChild(newComment);
-  }
+                commentsList.appendChild(newComment);
+            }
 
-  // clear the form input after submission
-  document.getElementById('comment').value = '';
-});
+            // clear the form input after submission
+            document.getElementById('comment').value = '';
+        });
 
-// add event listener for editing a comment
-commentsList.addEventListener('click', function (event) {
-  if (event.target.classList.contains('edit-comment')) {
-    const commentItem = event.target.closest('li');
-    const commentText = commentItem.querySelector('.comment-text').innerText;
-    document.getElementById('comment').value = commentText;
-    commentToEdit = commentItem;
-  } else if (event.target.classList.contains('delete-comment')) {
-    const commentItem = event.target.closest('li');
-    commentsList.removeChild(commentItem);
-  }
-});
+        // add event listener for editing a comment
+        commentsList.addEventListener('click', function (event) {
+            if (event.target.classList.contains('edit-comment')) {
+                const commentItem = event.target.closest('li');
+                const commentText = commentItem.querySelector('.comment-text').innerText;
+                document.getElementById('comment').value = commentText;
+                commentToEdit = commentItem;
+            } else if (event.target.classList.contains('delete-comment')) {
+                const commentItem = event.target.closest('li');
+                commentsList.removeChild(commentItem);
+            }
+        });
+
+    </script>
+</body>
+
+</html>

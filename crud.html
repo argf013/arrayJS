@@ -1,0 +1,42 @@
+const form = document.querySelector('form');
+const commentsList = document.getElementById('comments');
+let commentToEdit = null;
+
+form.addEventListener('submit', function (event) {
+  event.preventDefault(); // prevent page reload on form submission
+
+  const commentText = document.getElementById('comment').value;
+
+  if (commentToEdit) {
+    // if commentToEdit exists, update the comment
+    commentToEdit.querySelector('.comment-text').innerText = commentText;
+    commentToEdit = null; // reset the commentToEdit variable
+  } else {
+    // otherwise, create a new comment
+    const newComment = document.createElement('li');
+    newComment.innerHTML = `
+      <div class="comment-text">${commentText}</div>
+      <div class="comment-actions">
+        <button class="edit-comment">Edit</button>
+        <button class="delete-comment">Delete</button>
+      </div>
+    `;
+    commentsList.appendChild(newComment);
+  }
+
+  // clear the form input after submission
+  document.getElementById('comment').value = '';
+});
+
+// add event listener for editing a comment
+commentsList.addEventListener('click', function (event) {
+  if (event.target.classList.contains('edit-comment')) {
+    const commentItem = event.target.closest('li');
+    const commentText = commentItem.querySelector('.comment-text').innerText;
+    document.getElementById('comment').value = commentText;
+    commentToEdit = commentItem;
+  } else if (event.target.classList.contains('delete-comment')) {
+    const commentItem = event.target.closest('li');
+    commentsList.removeChild(commentItem);
+  }
+});

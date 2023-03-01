@@ -9,9 +9,12 @@ async function calculateDays() {
 
 async function getUserInput() {
   return new Promise((resolve) => {
-    const userInput = prompt('Masukkan tanggal awal (YYYY-MM-DD)');
-    resolve(userInput);
+    const userInput = prompt('Masukkan tanggal awal (DD-MM-YYYY)');
+    const [dd, mm, yyyy] = userInput.split('-');
+    const formattedDate = `${mm}-${dd}-${yyyy}`;
+    resolve(formattedDate);
   });
 }
+
 
 calculateDays();

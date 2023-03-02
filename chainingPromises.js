@@ -5,7 +5,7 @@ const state = {
     },
     isCoffeeMachineBusy: false,
 }
- 
+
 const checkAvailability = () => {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
@@ -17,7 +17,7 @@ const checkAvailability = () => {
         }, 1000);
     });
 };
- 
+
 const checkStock = () => {
     return new Promise((resolve, reject) => {
         !state.isCoffeeMachineBusy;
@@ -30,7 +30,7 @@ const checkStock = () => {
         }, 1500);
     });
 };
- 
+
 const brewCoffee = () => {
     console.log("Membuatkan kopi Anda...")
     return new Promise((resolve, reject) => {
@@ -39,7 +39,7 @@ const brewCoffee = () => {
         }, 2000);
     });
 };
- 
+
 function makeEspresso() {
     checkAvailability()
         .then((value) => {
@@ -59,5 +59,5 @@ function makeEspresso() {
             state.isCoffeeMachineBusy = false;
         });
 }
- 
+
 makeEspresso();

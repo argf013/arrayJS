@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+	<title>Convert XLSX to JSON</title>	<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+
+</head>
+
+<body>
+
+	<input type="file" id="file-input">
+
+	<button id="download-btn" disabled>Download JSON</button>
+
+	<pre id="json-output"></pre>
+
+	<script>
+
+		// variabel global untuk menyimpan data JSON hasil konversi
+
+		let jsonData = null;
+
+		// menambahkan event listener untuk input file
+
+		document.getElementById('file-input').addEventListener('change', function(e) {
+
+			// membaca file XLSX
+
+			const file = e.target.files[0];
+
+			const reader = new FileReader();
+
+			reader.onload = function(e) {
+
+				const data = new Uint8Array(e.target.result);
+
+				const workbook = XLSX.read(data, { type: 'array' });
+
+				
+
+				// mengambil data sheet
+
+				const sheetName = workbook.SheetNames[0];
+
+				const sheetData = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName]);
+
+				// menyimpan data JSON hasil konversi
+
+				jsonData = sheetData;
+
+				// menampilkan data sheet dalam format JSON
+
+				document.getElementById('json-output').textContent = JSON.stringify(jsonData, null, 2);
+
+				// mengaktifkan tombol Download JSON
+
+				document.getElementById('download-btn').disabled = false;
+
+			};
+
+			reader.readAsArrayBuffer(file);
+
+		});
+
+		// menambahkan event listener untuk tombol Download JSON
+
+		document.getElementById('download-btn').addEventListener('click', function() {
+
+			// membuat objek Blob untuk data JSON
+
+			const blobData = new Blob([JSON.stringify(jsonData, null, 2)], { type: 'application/json' });
+
+			// membuat objek URL untuk Blob
+
+			const downloadUrl = URL.createObjectURL(blobData);
+
+			// membuat elemen <a> untuk mengunduh file JSON
+
+			const downloadLink = document.createElement('a');
+
+			downloadLink.href = downloadUrl;
+
+			downloadLink.download = 'data.json';
+
+			document.body.appendChild(downloadLink);
+
+			// mengklik elemen <a> untuk mengunduh file JSON
+
+			downloadLink.click();
+
+			// menghapus elemen <a> setelah selesai mengunduh file JSON
+
+			document.body.removeChild(downloadLink);
+
+			// membebaskan URL objek Blob
+
+			URL.revokeObjectURL(downloadUrl);
+
+		});
+
+	</script>
+
+</body>
+
+</html>

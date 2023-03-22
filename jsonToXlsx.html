@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>JSON to XLSX Converter</title>
+</head>
+
+<body>
+    <h1>JSON to XLSX Converter</h1>
+    <label for="json-input">JSON Input:</label>
+    <br>
+    <textarea id="json-input" cols="50" rows="10"></textarea>
+    <br><br>
+    <button id="convert-button">Convert to XLSX</button>
+    <br><br>
+    <a id="download-link" href="#" download="output.xlsx" style="display: none;">Download</a>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.8/xlsx.full.min.js"></script>
+    <script>
+        const convertButton = document.getElementById('convert-button');
+        const downloadLink = document.getElementById('download-link');
+        const jsonInput = document.getElementById('json-input');
+
+        convertButton.addEventListener('click', () => {
+            const data = JSON.parse(jsonInput.value);
+            const worksheet = XLSX.utils.json_to_sheet(data);
+            const workbook = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
+            XLSX.writeFile(workbook, 'output.xlsx');
+            downloadLink.style.display = 'block';
+        });
+    </script>
+</body>
+
+</html>

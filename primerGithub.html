@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Primer Test</title>
+    <style>
+        .Popover {
+            opacity: 1;
+            visibility: visible;
+            position: absolute;
+            z-index: 9999;
+        }
+
+        .Popover.anim-fade-in {
+            animation: fade-in 0.3s ease-in-out forwards;
+        }
+
+        .Popover.anim-fade-out {
+            animation: fade-out 0.3s ease-in-out forwards;
+        }
+
+        .Popover-message:after,
+        .Popover-message:before {
+            content: none !important;
+            display: none !important;
+        }
+
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fade-out {
+            from {
+                opacity: 1;
+            }
+
+            to {
+                opacity: 0;
+            }
+        }
+    </style>
+    <link href="https://unpkg.com/@primer/css@^20.2.4/dist/primer.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="Box mx-auto mt-10 " style="width: 22em;">
+        <div class="Box-header d-flex flex-sm-items-center flex-justify-between">
+            Click Counter <span class="Counter mr-1" id="result"></span>
+            <button onclick="addCount()" type="button" id="counter" class="btn btn-primary "
+                name="button">Click</button>
+        </div>
+        <div class="d-flex Box-row flex-items-center">
+            <span class="text-small color-fg-muted mr-2"><span id="countProg">0</span> of 10</span>
+            <span class="Progress d-inline-flex" style="width: 160px">
+                <span class="Progress-item color-bg-success-emphasis" style="width: 0%" id="progressBar"></span>
+            </span>
+        </div>
+        <div class="Box-row d-flex flex-items-center">
+            <div class="flex-auto">
+                <strong>Developed by Argf</strong>
+                <div class="text-small color-fg-subtle">
+                    Click View to Check My Github
+                </div>
+            </div>
+
+            <a href="https://github.com/argf013" target="_blank"
+                class="link-mktg arrow-target-mktg link-emphasis-mktg text-semibold f4-mktg color-fg-default">
+                View
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="octicon arrow-symbol-mktg" width="16" height="16"
+                    viewBox="0 0 16 16" fill="none">
+                    <path fill="currentColor"
+                        d="M7.28033 3.21967C6.98744 2.92678 6.51256 2.92678 6.21967 3.21967C5.92678 3.51256 5.92678 3.98744 6.21967 4.28033L7.28033 3.21967ZM11 8L11.5303 8.53033C11.8232 8.23744 11.8232 7.76256 11.5303 7.46967L11 8ZM6.21967 11.7197C5.92678 12.0126 5.92678 12.4874 6.21967 12.7803C6.51256 13.0732 6.98744 13.0732 7.28033 12.7803L6.21967 11.7197ZM6.21967 4.28033L10.4697 8.53033L11.5303 7.46967L7.28033 3.21967L6.21967 4.28033ZM10.4697 7.46967L6.21967 11.7197L7.28033 12.7803L11.5303 8.53033L10.4697 7.46967Z">
+                    </path>
+                    <path stroke="currentColor" d="M1.75 8H11" stroke-width="1.5" stroke-linecap="round"></path>
+                </svg>
+            </a>
+        </div>
+        <div class="position-relative text-center ">
+            <div class="Popover right-0 left-0 d-none">
+                <div class="Popover-message text-left p-4 mt-2 mx-auto Box color-shadow-large">
+                    <h4 class="mb-2">Congratulations <span id="namaResult"></span>! You reach <span
+                            id="resultPop"></span> Click</h4>
+                    <p>Message about this particular piece of UI.</p>
+                    <button type="submit" id="pop" class="btn btn-outline mt-2 text-bold">Reset</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // const nama = prompt("Enter your name...")
+        // Simpan elemen yang akan digunakan dalam variabel
+        const namaResult = document.getElementById('namaResult');
+        const result = document.getElementById('result');
+        const counter = document.getElementById('counter');
+        const resultPop = document.getElementById('resultPop');
+        const progress = document.querySelector('.Progress-item');
+        const popover = document.querySelector('.Popover');
+        const countProg = document.getElementById("countProg");
+
+        // Buat fungsi untuk menambah jumlah hitungan dan memperbarui elemen yang terkait
+        const addCount = () => {
+            count++;
+            result.innerText = count;
+            resultPop.innerText = count;
+            countProg.innerText = count;
+            console.log(count);
+
+            // Hitung persentase kemajuan dan perbarui lebar elemen progres
+            const percentage = (count / 10) * 100;
+            progress.style.width = `${percentage}%`;
+
+            // Tampilkan popover jika hitungan mencapai 10
+            if (count === 10) {
+                popover.classList.remove('d-none');
+                popover.classList.add('anim-fade-in');
+            }
+        };
+
+        // Buat fungsi untuk mereset hitungan dan elemen yang terkait saat tombol di klik
+        const resetCount = () => {
+            count = 0;
+            result.innerText = count;
+            resultPop.innerText = count;
+            countProg.innerText = count;
+            progress.style.width = '0%';
+            popover.classList.remove('anim-fade-out', 'anim-fade-in');
+            popover.classList.add('d-none');
+        };
+
+        // Buat variabel untuk menyimpan nama pengguna dan meminta pengguna memasukkan namanya jika belum ada
+        let nama = "";
+        while (nama === "") {
+            nama = prompt("Enter your name...");
+        }
+
+        // Tampilkan nama pengguna pada halaman
+        namaResult.innerText = nama;
+
+        // Tambahkan event listener pada tombol popover
+        const btn = document.getElementById('pop');
+        btn.addEventListener('click', resetCount);
+
+        // Inisialisasi hitungan awal
+        let count = 0;
+
+    </script>
+</body>
+
+</html>

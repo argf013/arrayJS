@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Primer Test</title>
     <style>
         .Popover {
@@ -45,55 +47,111 @@
                 opacity: 0;
             }
         }
+
+        @media (max-width: 768px) {
+
+            /* Semua aturan CSS untuk layar kecil diletakkan di sini */
+            .Popover {
+                width: 20em;
+                margin: auto;
+                display: block;
+                transform: translate(0%, -185%);
+            }
+
+            .Counter {
+                padding: 6px 6px !important;
+            }
+
+            .textCounter {
+                padding: 6px 6px !important;
+            }
+        }
     </style>
     <link href="https://unpkg.com/@primer/css@^20.2.4/dist/primer.css" rel="stylesheet" />
 </head>
 
-<body>
-    <div class="Box mx-auto mt-10 " style="width: 22em;">
-        <div class="Box-header d-flex flex-sm-items-center flex-justify-between">
-            Click Counter <span class="Counter mr-1" id="result"></span>
-            <button onclick="addCount()" type="button" id="counter" class="btn btn-primary "
-                name="button">Click</button>
+<body data-color-mode="dark" data-dark-theme="dark_dimmed">
+    <div class="Header">
+        <!-- Text item -->
+        <div class="Header-item">
+            <a href="https://primer.style/" target="_blank" style="color: aliceblue;"
+                onmouseover="this.style.color='blue';" onmouseout="this.style.color='aliceblue';"
+                class="h6-mktg text-center no-underline">Primer Test</a>
         </div>
-        <div class="d-flex Box-row flex-items-center">
-            <span class="text-small color-fg-muted mr-2"><span id="countProg">0</span> of 10</span>
-            <span class="Progress d-inline-flex" style="width: 160px">
-                <span class="Progress-item color-bg-success-emphasis" style="width: 0%" id="progressBar"></span>
-            </span>
+
+
+        <!-- Image item  -->
+        <div class="Header-item">
+            <img class="avatar" height="20" alt="@octocat" src="https://github.com/octocat.png" width="20">
         </div>
-        <div class="Box-row d-flex flex-items-center">
-            <div class="flex-auto">
-                <strong>Developed by Argf</strong>
-                <div class="text-small color-fg-subtle">
-                    Click View to Check My Github
+
+        <div class="Header-item">
+            <button onclick="toggleTheme()" class="btn" id="themeSelect" type="button">
+                <svg aria-hidden="true" role="img" class="octicon octicon-sun" viewBox="0 0 16 16" width="16"
+                    height="16" fill="currentColor"
+                    style="display: inline-block; user-select: none; vertical-align: text-bottom; overflow: visible;">
+                    <path fill-rule="evenodd"
+                        d="M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z">
+                    </path>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+
+    <p class="h3-mktg text-center mt-3">Welcome to My Trial & Error</p>
+    <div class="d-flex flex-items-center">
+        <div class="Box mx-auto mt-5" style="width: 25em;">
+            <div class="Box-header d-flex flex-items-center flex-justify-between">
+                <span class="textCounter">Click Counter</span>
+                <!-- <div class="Counter" id="result">0</div> -->
+                <div class="clearfix">
+                    <button class="btn btn-sm btn-with-count" onclick="addCount()" href="#url" role="button">
+                        <span>Click</span>
+                    </button>
+                    <span class="social-count" id="result">0</span>
                 </div>
             </div>
+            <div class="d-flex Box-row flex-items-center">
+                <span class="text-small color-fg-muted mr-2"><span id="countProg">0</span> of 10</span>
+                <span class="Progress d-inline-flex" style="width: 160px">
+                    <span class="Progress-item color-bg-success-emphasis" style="width: 0%" id="progressBar"></span>
+                </span>
+            </div>
+            <div class="Box-row d-flex flex-items-center">
+                <div class="flex-auto">
+                    <strong>Developed by Argf</strong>
+                    <div class="text-small color-fg-subtle">
+                        Click View to Check My Github
+                    </div>
+                </div>
 
-            <a href="https://github.com/argf013" target="_blank"
-                class="link-mktg arrow-target-mktg link-emphasis-mktg text-semibold f4-mktg color-fg-default">
-                View
+                <a href="https://github.com/argf013" target="_blank"
+                    class="link-mktg arrow-target-mktg link-emphasis-mktg text-semibold f4-mktg color-fg-default">
+                    View
 
-                <svg xmlns="http://www.w3.org/2000/svg" class="octicon arrow-symbol-mktg" width="16" height="16"
-                    viewBox="0 0 16 16" fill="none">
-                    <path fill="currentColor"
-                        d="M7.28033 3.21967C6.98744 2.92678 6.51256 2.92678 6.21967 3.21967C5.92678 3.51256 5.92678 3.98744 6.21967 4.28033L7.28033 3.21967ZM11 8L11.5303 8.53033C11.8232 8.23744 11.8232 7.76256 11.5303 7.46967L11 8ZM6.21967 11.7197C5.92678 12.0126 5.92678 12.4874 6.21967 12.7803C6.51256 13.0732 6.98744 13.0732 7.28033 12.7803L6.21967 11.7197ZM6.21967 4.28033L10.4697 8.53033L11.5303 7.46967L7.28033 3.21967L6.21967 4.28033ZM10.4697 7.46967L6.21967 11.7197L7.28033 12.7803L11.5303 8.53033L10.4697 7.46967Z">
-                    </path>
-                    <path stroke="currentColor" d="M1.75 8H11" stroke-width="1.5" stroke-linecap="round"></path>
-                </svg>
-            </a>
-        </div>
-        <div class="position-relative text-center ">
-            <div class="Popover right-0 left-0 d-none">
-                <div class="Popover-message text-left p-4 mt-2 mx-auto Box color-shadow-large">
-                    <h4 class="mb-2">Congratulations <span id="namaResult"></span>! You reach <span
-                            id="resultPop"></span> Click</h4>
-                    <p>Message about this particular piece of UI.</p>
-                    <button type="submit" id="pop" class="btn btn-outline mt-2 text-bold">Reset</button>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="octicon arrow-symbol-mktg" width="16" height="16"
+                        viewBox="0 0 16 16" fill="none">
+                        <path fill="currentColor"
+                            d="M7.28033 3.21967C6.98744 2.92678 6.51256 2.92678 6.21967 3.21967C5.92678 3.51256 5.92678 3.98744 6.21967 4.28033L7.28033 3.21967ZM11 8L11.5303 8.53033C11.8232 8.23744 11.8232 7.76256 11.5303 7.46967L11 8ZM6.21967 11.7197C5.92678 12.0126 5.92678 12.4874 6.21967 12.7803C6.51256 13.0732 6.98744 13.0732 7.28033 12.7803L6.21967 11.7197ZM6.21967 4.28033L10.4697 8.53033L11.5303 7.46967L7.28033 3.21967L6.21967 4.28033ZM10.4697 7.46967L6.21967 11.7197L7.28033 12.7803L11.5303 8.53033L10.4697 7.46967Z">
+                        </path>
+                        <path stroke="currentColor" d="M1.75 8H11" stroke-width="1.5" stroke-linecap="round"></path>
+                    </svg>
+                </a>
+            </div>
+            <div class="position-relative text-center ">
+                <div class="Popover right-0 left-0 d-none">
+                    <div class="Popover-message text-left p-4 mt-2 mx-auto Box color-shadow-large">
+                        <h4 class="mb-2">Congratulations <span id="namaResult"></span>! You reach <span
+                                id="resultPop"></span> Click</h4>
+                        <p>Message about this particular piece of UI.</p>
+                        <button type="submit" id="pop" class="btn btn-outline mt-2 text-bold">Reset</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
     <script>
         // const nama = prompt("Enter your name...")
         // Simpan elemen yang akan digunakan dalam variabel
@@ -119,7 +177,7 @@
 
             // Tampilkan popover jika hitungan mencapai 10
             if (count === 10) {
-                popover.classList.remove('d-none');
+                popover.classList.remove('d-none', 'anim-fade-out');
                 popover.classList.add('anim-fade-in');
             }
         };
@@ -132,15 +190,15 @@
             countProg.innerText = count;
             progress.style.width = '0%';
             popover.classList.remove('anim-fade-out', 'anim-fade-in');
-            popover.classList.add('d-none');
+            popover.classList.add('anim-fade-out');
         };
 
         // Buat variabel untuk menyimpan nama pengguna dan meminta pengguna memasukkan namanya jika belum ada
-        let nama = "";
+        let nama = "a";
         while (nama === "") {
             nama = prompt("Enter your name...");
         }
-
+        
         // Tampilkan nama pengguna pada halaman
         namaResult.innerText = nama;
 
@@ -150,6 +208,22 @@
 
         // Inisialisasi hitungan awal
         let count = 0;
+
+        function toggleTheme() {
+            const body = document.body;
+            const currentTheme = body.getAttribute('data-color-mode');
+            const themeSelect = document.getElementById('themeSelect');
+
+            if (currentTheme === 'dark') {
+                body.setAttribute('data-color-mode', 'light');
+                body.setAttribute('data-light-theme', 'light');
+                themeSelect.innerHTML = '<svg aria-hidden="true" role="img" class="octicon octicon-moon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" style="display: inline-block; user-select: none; vertical-align: text-bottom; overflow: visible;"><path fill-rule="evenodd" d="M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z"></path></svg>'
+            } else {
+                body.setAttribute('data-color-mode', 'dark');
+                body.setAttribute('data-dark-theme', 'dark_dimmed');
+                themeSelect.innerHTML = '<svg aria-hidden="true" role="img" class="octicon octicon-sun" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" style="display: inline-block; user-select: none; vertical-align: text-bottom; overflow: visible;"><path fill-rule="evenodd" d="M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z"></path></svg>'
+            }
+        }
 
     </script>
 </body>
